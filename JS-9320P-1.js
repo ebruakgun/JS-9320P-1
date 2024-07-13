@@ -121,28 +121,37 @@ const metaData = {
     },
   ],
 };
-const characters=metaData.characters;
-const container=document.getElementById("container");
-const button=document.getElementById("button");
-let isActive=false;
+const characters = metaData.characters;
+const container = document.getElementById("container");
+const button = document.getElementById("button");
+let isActive = false;
 
 function renderCharacters(){
-  const row=document.createElement("div")
-   row.classList.add("row")
-   container.append(row)
+  const row = document.createElement("div");
+  row.classList.add("row");
+  container.append(row);
 
-   for (i=0;i<characters.length;i++){
-    let pictures=characters[i].pic
-    let name=characters[i].name
-    let homeworld=characters[i].homeworld
-   }
+  for (i = 0; i < characters.length; i++) {
+    console.log(characters[i].pic,characters[i].name,characters[i].homeworld)
+    let pic = characters[i].pic;
+    let name = characters[i].name;
+    let homeworld = characters[i].homeworld;
+    let cardHtmlData = `
+        <div class="card" mx-auto mt-2 style="width: 20rem;">
+          <img class="card-img-top" src="${pic}" alt=""/>
+          <div class="card-body">
+            <h5 class="card-title">${name}</h5>
+            <p class="card-text">${homeworld}</p>
+          </div>
+        </div>
+    `;
+    row.innerHTML += cardHtmlData;
+  }
 }
 
-function ChangeCharactersVisibility(){
-    if (isActive){
-
-    } else {
-
-
-    }
+function ChangeCharactersVisibility() {
+  if (isActive) {
+  } else {
+  }
 }
+renderCharacters()
