@@ -126,16 +126,16 @@ const container = document.getElementById("container");
 const button = document.getElementById("button");
 let isActive = false;
 
-function renderCharacters(){
+function renderCharacters() {
   const row = document.createElement("div");
   row.classList.add("row");
   container.append(row);
 
   for (i = 0; i < characters.length; i++) {
-    console.log(characters[i].pic,characters[i].name,characters[i].homeworld)
+    console.log(characters[i].pic, characters[i].name, characters[i].homeworld);
     let pic = characters[i].pic;
     let name = characters[i].name;
-    let homeworld = characters[i].homeworld;
+    let homeworld = (characters[i].homeworld ?? "other").toLowerCase();
     let cardHtmlData = `
         <div class="card" mx-auto mt-2 style="width: 20rem;">
           <img class="card-img-top" src="${pic}" alt=""/>
@@ -147,11 +147,18 @@ function renderCharacters(){
     `;
     row.innerHTML += cardHtmlData;
   }
+  button.innerHTML = "Hide Characters";
+  button.classList.replace("btn-primary", "btn-danger");
+  isActive = true;
 }
-
 function ChangeCharactersVisibility() {
   if (isActive) {
+    const row = document.querySelector(".row");
+    row.remove();
+    button.innerHTML="Show Characters"
+    button.classList.replace("btn-danger", "btn-primary");
+    isActive=false
   } else {
+    renderCharacters();
   }
 }
-renderCharacters()
